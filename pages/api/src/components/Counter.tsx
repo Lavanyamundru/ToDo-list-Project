@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { homeActions } from "../redux/actions/Home.actions";
+import { homeActions } from "../../../../src/redux/actions/Homeactions";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/reducers/rootReducer";
+import { RootState } from "../../../../src/redux/reducers/rootReducer";
 
-const Counter = () => {
+const Todolis = () => {
   const dispatch = useDispatch();
 
   const [todoInput, setTodoInput] = useState("");
 
   const { todo_list } = useSelector((state: RootState) => state.home);
+  const changeHandler = (e: any) => {
+    setTodoInput(e.target.value);
+  };
 
   const onClickAdd = () => {
     const newTodoObj = {
@@ -26,7 +29,7 @@ const Counter = () => {
   };
   return (
     <div>
-      <input value={todoInput} onChange={(e) => setTodoInput(e.target.value)} />
+      <input value={todoInput} onChange={changeHandler} />
 
       <button type="button" onClick={onClickAdd}>
         Add
@@ -47,4 +50,4 @@ const Counter = () => {
   );
 };
 
-export default Counter;
+export default Todolis;
