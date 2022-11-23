@@ -1,4 +1,4 @@
-import { ADDTODO, DELETE_ALL, REMOVE_TODO, UPDATE_TODO } from "../types";
+import { ADDTODO, DELETE_ALL, REMOVE_TODO, UPDATE_TODO , UPDATE_CHECKBOX} from "../types";
 export const addTodo = (payload: any) => {
   return {
     type: ADDTODO,
@@ -25,6 +25,12 @@ export const handleEditSubmit = (payload: any) => {
     payload,
   };
 };
+export const handleCheckbox=(payload:any)=>{
+  return{
+      type: UPDATE_CHECKBOX,
+      payload
+  }
+}
 
 // import { ADDTODO } from "../types";
 

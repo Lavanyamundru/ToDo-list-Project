@@ -1,8 +1,16 @@
-import { ADDTODO, DELETE_ALL, REMOVE_TODO, UPDATE_TODO } from "../types";
+import {
+  ADDTODO,
+  DELETE_ALL,
+  REMOVE_TODO,
+  UPDATE_TODO,
+  UPDATE_CHECKBOX,
+} from "../types";
 
 const todo = {
   id: 1,
   todoItem: "todoInput",
+  completed: "completed",
+  isSelected: false,
 };
 const initialState: typeof todo[] = [];
 const homeReducer = (state = initialState, action: any) => {
@@ -11,7 +19,7 @@ const homeReducer = (state = initialState, action: any) => {
       return [...state, action.payload];
     case DELETE_ALL:
       return [];
-      
+
     case REMOVE_TODO:
       const filteredTodos = state.filter(
         (todo: any) => todo.id !== action.payload
@@ -21,21 +29,31 @@ const homeReducer = (state = initialState, action: any) => {
     case UPDATE_TODO:
       let data = action.payload;
 
-      const updatedArray: typeof todo[] = [];
-      state.map((item: any) => {
+      const result:any = state.map((item: any) => {
         if (item.id === data.id) {
-          item.id = data.id;
-          item.todoItem = data.todoItem;
+          return({...item,todoItem:data.todoItem})
+          }
+          return item;
+       });
+      console.log(state);
+      return result;
+     case UPDATE_CHECKBOX:
+      let dataa = action.payload;
+      
+      const res:any=state.map((item: any) => {
+        if (item.id === dataa.id) {
+          return({...item,isSelected:dataa.isSelected})
+          
         }
-        updatedArray.push(item);
+        return item;
+        
       });
-      return updatedArray;
-    
+      console.log(state);
+      return res;
+
     default:
       return state;
   }
-
-  
 };
 
 export default homeReducer;
