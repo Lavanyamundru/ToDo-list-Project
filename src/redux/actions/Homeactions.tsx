@@ -31,21 +31,3 @@ export const handleCheckbox=(payload:any)=>{
       payload
   }
 }
-
-// import { ADDTODO } from "../types";
-
-// const addTodo = (data: any) => {
-//   return (dispatch: any) => {
-//     try {
-//       dispatch({
-//         type: ADDTODO,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-// export const Homeactions = {
-//   addTodo,
-// };

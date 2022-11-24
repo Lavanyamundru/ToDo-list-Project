@@ -11,6 +11,7 @@ const todo = {
   todoItem: "todoInput",
   completed: "completed",
   isSelected: false,
+  description: "",
 };
 const initialState: typeof todo[] = [];
 const homeReducer = (state = initialState, action: any) => {
@@ -28,25 +29,24 @@ const homeReducer = (state = initialState, action: any) => {
 
     case UPDATE_TODO:
       let data = action.payload;
-
-      const result:any = state.map((item: any) => {
+const result: any = state.map((item: any) => {
         if (item.id === data.id) {
-          return({...item,todoItem:data.todoItem})
-          }
-          return item;
-       });
-      console.log(state);
-      return result;
-     case UPDATE_CHECKBOX:
-      let dataa = action.payload;
-      
-      const res:any=state.map((item: any) => {
-        if (item.id === dataa.id) {
-          return({...item,isSelected:dataa.isSelected})
-          
+          return { ...item,todoItem:data.todoItem ,description:data.description};
         }
         return item;
-        
+      });
+      console.log(state);
+      return result;
+
+
+    case UPDATE_CHECKBOX:
+      let dataa = action.payload;
+
+      const res: any = state.map((item: any) => {
+        if (item.id === dataa.id) {
+          return { ...item, isSelected: dataa.isSelected };
+        }
+        return item;
       });
       console.log(state);
       return res;
