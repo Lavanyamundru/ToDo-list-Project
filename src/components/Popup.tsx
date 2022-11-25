@@ -75,7 +75,11 @@ const Inputcontainer = styled.input`
   margin-top: 5px;
   width: 210px;
 `;
+const Button1=styled.button`
 
+  height:20px;
+  background-color:grey;
+`
 export default function Popup({ handlePopup, editdata }: any) {
   const dispatch = useDispatch();
   const [todoInput, setTodoInput] = useState(editdata.todoItem);
@@ -140,15 +144,13 @@ export default function Popup({ handlePopup, editdata }: any) {
             </label>
 
             {Object.keys(editdata).length === 0 ? (
-              <Button
-                variant="contained"
-                color="primary"
-                type="button"
+              <Button1
+               type="button"
                 onClick={onClickAdd}
-                style={{ width: 160, background: "grey" }}
+                
               >
                 Add Task
-              </Button>
+              </Button1>
             ) : (
               <Button
                 variant="contained"

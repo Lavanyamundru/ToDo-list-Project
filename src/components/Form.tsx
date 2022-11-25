@@ -53,21 +53,48 @@ const Divcontainer = styled.div`
   height: 100%;
   margin-top: -32px;
 `;
-
+const Button1=styled.button`
+  float: right;
+      margin-top:-30px;
+         height: 25px;
+        color: black;
+     border: black;
+     background-color:grey;
+     margin-right:65px;
+`
+const Button2=styled.button`
+   float: right;
+      margin-top:-30px;
+         height: 25px;
+        color: black;
+     border: black;
+     margin-right:4px;
+     background-color:grey;
+`
+const Button3=styled.button`
+   width: 480px;
+    background: rgb(255,245,238);
+    margin-top: 10px;
+ margin-left: 400px;
+height: 30px;
+color: black;
+ border: 1px solid black;
+`
 const Div1 = styled.div`
   margin-left: 40px;
   margin-top: -15px;
 `;
+const Button4=styled.button`
+  width: 130px;
+  background: grey ;
+  height: 30px;
+`
 const Todolis = () => {
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editdata, setEditdata] = useState({});
-  // const [todoInput, setTodoInput] = useState("");
-  // const [editItemId, setEditItemId] = useState("");
   const [checked, setChecked] = useState(false);
-  // const [description, setDescription] = useState("");
-
   const todo_list = useSelector((state: RootState) => state.home);
 
   const handleEditClick = (todo: any) => {
@@ -94,15 +121,11 @@ const Todolis = () => {
         <div>
           <H3>Todo List</H3>
           <Input type="text" placeholder="click on Button to fill the data" />
-          <Button
-            variant="contained"
-            color="primary"
-            type="button"
-            onClick={() => setModalOpen(true)}
-            style={{ width: 130, background: "grey", height: 30 }}
-          >
+          <Button4
+          type="button"
+            onClick={() => setModalOpen(true)}>
             Add Task
-          </Button>
+          </Button4>
 
           <div>
             {todo_list.map((each: any) => (
@@ -122,59 +145,26 @@ const Todolis = () => {
                   <div>{each.description}</div>
                 </Div1>
 
-                <Button
-                  variant="outlined"
-                  startIcon={<EditIcon />}
-                  type="button"
-                  className="ModalButton1"
+                <Button1
+                type="button"
                   onClick={() => handleEditClick(each)}
-                  sx={{
-                    mt: -7,
-                    ml: 33,
-                    height: 25,
-                    color: "black",
-                    border: "black",
-                  }}
                 >
                   Edit
-                </Button>
-
-                <Button
-                  variant="outlined"
-                  startIcon={<DeleteIcon />}
-                  type="button"
-                  className="ModalButton"
-                  onClick={() => onClickDelete(each.id)}
-                  sx={{
-                    float: "right",
-                    mt: -3,
-                    height: 25,
-                    color: "black",
-                    border: "black",
-                  }}
+                </Button1>
+                <Button2
+              type="button"
+                 onClick={() => onClickDelete(each.id)}
                 >
                   Delete
-                </Button>
+                </Button2>
               </Div>
             ))}
-            <Button
-              variant="outlined"
-              startIcon={<DeleteIcon />}
+            <Button3
               type="button"
-              className="ModalButton2"
-              onClick={() => dispatch(deleteAll())}
-              sx={{
-                width: 500,
-                background: "rgb(255,245,238)",
-                mt: 10,
-                ml: 50,
-                height: 30,
-                color: "black",
-                border: 1,
-              }}
+            onClick={() => dispatch(deleteAll())}
             >
               Delete All
-            </Button>
+            </Button3>
             {modalOpen ? (
               <Popup handlePopup={handlePopup} editdata={editdata} />
             ) : (
