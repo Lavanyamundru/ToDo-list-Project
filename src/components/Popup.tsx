@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { MdOutlineClose } from "react-icons/md";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo, handleEditSubmit } from "../redux/actions/Homeactions";
 
 const Div = styled.div`
@@ -76,21 +75,12 @@ const Inputcontainer = styled.input`
   margin-top: 5px;
   width: 210px;
 `;
-// const Button = styled.button`
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: center;
-//   margin-top: 2rem;
-//   gap: 1rem;
-//   height:40px;
-//   width:100px;
-//   font-size:15px;
-//   padding-left:10px;
-// `;
-export default function Popup({ setModalOpen, editdata }: any) {
+
+export default function Popup({ handlePopup, editdata }: any) {
   const dispatch = useDispatch();
   const [todoInput, setTodoInput] = useState(editdata.todoItem);
   const [description, setDescription] = useState(editdata.description);
+
   const onClickAdd = () => {
     let newDate = new Date();
     let dateAndTime = newDate.toLocaleString();
@@ -102,20 +92,20 @@ export default function Popup({ setModalOpen, editdata }: any) {
     };
 
     dispatch(addTodo(newTodoObj) as any);
-    setModalOpen(false);
-setTodoInput("");
-setDescription("");
+    handlePopup(false);
+    setTodoInput("");
+    setDescription("");
   };
   const onClickUpdate = () => {
     const editedObj = {
       id: editdata.id,
       todoItem: todoInput,
       isSelected: editdata.isSelected,
-      description:description
+      description: description,
     };
     dispatch(handleEditSubmit(editedObj));
-    setModalOpen(false);
-setTodoInput("");
+    handlePopup(false);
+    setTodoInput("");
   };
 
   const changeHandler = (event: any) => {
@@ -130,8 +120,7 @@ setTodoInput("");
       <Div>
         <Div1>
           <Div2>
-            {/* <MdOutlineClose/> */}
-            <label onClick={() => setModalOpen(false)}>X</label>
+            <label onClick={() => handlePopup(false)}>X</label>
           </Div2>
           <Form>
             <H3>Add TODO</H3>

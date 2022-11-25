@@ -24,3 +24,10 @@ a {
     background: black;
   }
 }
+.modalButton {
+  margin-top: -7px;
+  margin-left: 33px;
+  height: 25px;
+  color: "black";
+  border: 1px solid black;
+}
